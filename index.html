@@ -1,110 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#100d1c">
-    <title>FlashaGames | Universo Gamer</title>
+    <title>FlashaGames | Mundo Gamer</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header class="topo">
-        <a href="#" class="logo">⚡ Flasha<span>Games</span></a>
+
+    <header>
+        <h1>🎮 FlashaGames</h1>
+
         <nav>
             <a href="#inicio">Início</a>
-            <a href="#catalogo">Catálogo</a>
-            <a href="#sobre">Sobre</a>
+            <a href="#jogos">Jogos</a>
+            <a href="#rodape">Contato</a>
         </nav>
     </header>
 
+    <section class="boas-vindas" id="inicio">
+        <h2>Prepare-se para jogar!</h2>
+        <p>Descubra novos mundos, desafie seus limites e encontre sua próxima aventura.</p>
+    </section>
+
     <main>
-        <section class="destaque" id="inicio">
-            <div class="destaque-texto">
-                <span class="etiqueta">SEU PRÓXIMO JOGO ESTÁ AQUI</span>
-                <h1>Entre no universo dos <span>games!</span></h1>
-                <p>Dos clássicos que marcaram gerações até suas novas aventuras favoritas.</p>
-                <a href="#catalogo" class="botao-link">Explorar catálogo ↓</a>
-            </div>
-            <div class="controle">🎮</div>
-        </section>
-
-        <section class="container" id="catalogo">
-            <div class="titulo-secao">
-                <div>
-                    <span class="etiqueta">ESCOLHA SUA AVENTURA</span>
-                    <h2>Catálogo de jogos</h2>
-                    <p>Encontre seu próximo game favorito.</p>
-                </div>
-                <button id="btnCadastrar" type="button">＋ Cadastrar jogo</button>
-            </div>
-
-            <div class="ferramentas">
-                <input type="search" id="pesquisa"
-                    placeholder="🔎 Buscar jogo pelo nome...">
-
-                <select id="filtroPlataforma">
-                    <option value="">Todas as plataformas</option>
-                </select>
-            </div>
-
-            <section id="listarJogos" class="listar-jogos">
-                <p id="mensagemVazia">Carregando jogos...</p>
-            </section>
-        </section>
-
-        <section class="sobre" id="sobre">
+        <section class="titulo" id="jogos">
             <div>
-                <span class="etiqueta">SOBRE A FLASHAGAMES</span>
-                <h2></h2>
-                <p>
-                    Um espaço para descobrir games, relembrar clássicos
-                    e encontrar novas aventuras. Escolha seu jogo e
-                    prepare-se para jogar!
-                </p>
+                <h2>Explore nossa coleção</h2>
+                <p>Jogos de diferentes estilos e plataformas.</p>
             </div>
-            <div class="sobre-icone">👾</div>
+
+            <button id="abrirModal">+ Novo jogo</button>
         </section>
+
+        <section class="categorias">
+            <div class="categoria">
+                <span>⚔️</span>
+                <p>Aventura</p>
+            </div>
+
+            <div class="categoria">
+                <span>🏎️</span>
+                <p>Corrida</p>
+            </div>
+
+            <div class="categoria">
+                <span>👾</span>
+                <p>Clássicos</p>
+            </div>
+        </section>
+
+        <h2 class="subtitulo">Jogos disponíveis</h2>
+
+        <section id="catalogo" class="catalogo"></section>
+
+        <p id="mensagemVazia">Ainda não temos jogos cadastrados.</p>
     </main>
 
-    <footer>
-        <a href="#" class="logo">⚡ Flasha<span>Games</span></a>
-        <p>Feito para quem vive o mundo dos games 🎮</p>
-        <small>© 2026 FlashaGames</small>
-    </footer>
+    <dialog id="modal">
+        <h2>Adicionar à coleção</h2>
+        <p>Preencha os dados para incluir um novo jogo.</p>
 
-    <dialog id="modalCadastro">
-        <div class="modal-conteudo">
-            <h2>Cadastrar jogo</h2>
-            <p class="descricao-modal">Preencha os dados do novo game.</p>
+        <form id="formulario">
 
-            <form id="formJogo">
-                <label for="titulo">Título do jogo</label>
-                <input type="text" id="titulo" required>
+            <label for="titulo">Nome do jogo</label>
+            <input type="text" id="titulo" placeholder="Ex: Minecraft" required>
 
-                <label for="plataforma">Plataforma</label>
-                <input type="text" id="plataforma"
-                    placeholder="Ex.: PlayStation 2" required>
+            <label for="plataforma">Onde jogar?</label>
+            <input type="text" id="plataforma"
+                placeholder="Ex: PC, PlayStation, Xbox" required>
 
-                <label for="desenvolvedora">Desenvolvedora</label>
-                <input type="text" id="desenvolvedora" required>
+            <label for="desenvolvedora">Estúdio responsável</label>
+            <input type="text" id="desenvolvedora"
+                placeholder="Nome da desenvolvedora" required>
 
-                <label for="imagemUrl">URL da imagem</label>
-                <input type="url" id="imagemUrl"
-                    placeholder="https://site.com/capa.jpg" required>
+            <label for="imagem">Link da capa</label>
+            <input type="url" id="imagem"
+                placeholder="Cole o link da imagem" required>
 
-                <label for="preco">Preço (R$)</label>
-                <input type="number" id="preco" min="0"
-                    step="0.01" required>
+            <label for="preco">Valor do jogo (R$)</label>
+            <input type="number" id="preco" min="0" step="0.01"
+                placeholder="0.00" required>
 
-                <div class="acoes">
-                    <button type="button" id="btnCancelar"
-                        class="cancelar">Cancelar</button>
-                    <button type="submit">Salvar jogo</button>
-                </div>
-            </form>
-        </div>
+            <div class="botoes">
+                <button type="button" id="cancelar">Voltar</button>
+                <button type="submit">Adicionar</button>
+            </div>
+
+        </form>
     </dialog>
 
+    <footer id="rodape">
+        <h3>FlashaGames 🎮</h3>
+        <p>Feito para quem curte jogar.</p>
+        <p>© 2026 FlashaGames | Projeto escolar</p>
+    </footer>
+
     <script src="script.js"></script>
+
 </body>
 </html>
