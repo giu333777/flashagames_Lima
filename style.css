@@ -1,0 +1,241 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #100d1c;
+    color: white;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #8b5cf6;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #7041d8;
+}
+
+.topo, footer {
+    padding: 20px 8%;
+    background: #191329;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.topo {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span, h1 span {
+    color: #b58aff;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a:hover {
+    color: #b58aff;
+}
+
+.destaque {
+    padding: 55px 8%;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(120deg, #251644, #100d1c);
+}
+
+.destaque h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    margin-bottom: 12px;
+}
+
+.destaque p, .sobre p {
+    color: #c9c2d8;
+    line-height: 1.6;
+}
+
+.controle {
+    font-size: 90px;
+}
+
+.container, .sobre {
+    padding: 40px 8%;
+}
+
+.titulo-secao, .ferramentas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.ferramentas input {
+    flex: 1;
+}
+
+.ferramentas input, .ferramentas select, dialog input {
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #49376b;
+    border-radius: 8px;
+    background: #191329;
+    color: white;
+}
+
+.listar-jogos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+#mensagemVazia {
+    color: #c9c2d8;
+}
+
+.card-jogo {
+    overflow: hidden;
+    background: #191329;
+    border: 1px solid #302345;
+    border-radius: 12px;
+}
+
+.capa {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.info-jogo {
+    padding: 16px;
+}
+
+.info-jogo h3, .info-jogo p {
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.info-jogo p {
+    color: #c9c2d8;
+}
+
+.preco {
+    color: #b58aff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sobre {
+    background: #191329;
+    text-align: center;
+}
+
+.sobre-icone {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.sobre h2 {
+    margin-bottom: 12px;
+}
+
+footer {
+    justify-content: center;
+    text-align: center;
+    color: #c9c2d8;
+}
+
+dialog {
+    width: 90%;
+    max-width: 450px;
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #49376b;
+    border-radius: 14px;
+    background: #191329;
+    color: white;
+}
+
+dialog::backdrop {
+    background: #000b;
+}
+
+dialog h2 {
+    margin-bottom: 20px;
+}
+
+dialog form {
+    display: grid;
+    gap: 12px;
+}
+
+dialog input {
+    width: 100%;
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancelar {
+    background: #393044;
+}
+
+@media (max-width: 600px) {
+    .topo, .destaque {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .controle {
+        display: none;
+    }
+
+    .container, .sobre {
+        padding: 30px 5%;
+    }
+}
+
