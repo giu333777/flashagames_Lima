@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS db_retrogames;
+CREATE DATABASE IF NOT EXISTS db_flashagames;
 
-USE db_retrogames;
+USE db_flashagames;
 
 CREATE TABLE IF NOT EXISTS jogos (
     id INT PRIMARY KEY AUTO_INCREMENT,

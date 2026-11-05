@@ -16,7 +16,6 @@
         <nav>
             <a href="#inicio">Início</a>
             <a href="#jogos">Jogos</a>
-            <a href="#rodape">Contato</a>
         </nav>
     </header>
 
@@ -32,41 +31,25 @@
                 <p>Jogos de diferentes estilos e plataformas.</p>
             </div>
 
-            <button id="abrirModal">+ Novo jogo</button>
-        </section>
-
-        <section class="categorias">
-            <div class="categoria">
-                <span>⚔️</span>
-                <p>Aventura</p>
-            </div>
-
-            <div class="categoria">
-                <span>🏎️</span>
-                <p>Corrida</p>
-            </div>
-
-            <div class="categoria">
-                <span>👾</span>
-                <p>Clássicos</p>
-            </div>
+            <button id="btnCadastrar">+ Novo jogo</button>
         </section>
 
         <h2 class="subtitulo">Jogos disponíveis</h2>
 
-        <section id="catalogo" class="catalogo"></section>
+        <section id="listarJogos" class="catalogo"></section>
 
         <p id="mensagemVazia">Ainda não temos jogos cadastrados.</p>
     </main>
 
-    <dialog id="modal">
+    <dialog id="modalCadastro">
         <h2>Adicionar à coleção</h2>
         <p>Preencha os dados para incluir um novo jogo.</p>
 
-        <form id="formulario">
+        <form id="formJogo">
 
             <label for="titulo">Nome do jogo</label>
-            <input type="text" id="titulo" placeholder="Ex: Minecraft" required>
+            <input type="text" id="titulo"
+                placeholder="Ex: Minecraft" required>
 
             <label for="plataforma">Onde jogar?</label>
             <input type="text" id="plataforma"
@@ -76,8 +59,8 @@
             <input type="text" id="desenvolvedora"
                 placeholder="Nome da desenvolvedora" required>
 
-            <label for="imagem">Link da capa</label>
-            <input type="url" id="imagem"
+            <label for="imagemUrl">Link da capa</label>
+            <input type="url" id="imagemUrl"
                 placeholder="Cole o link da imagem" required>
 
             <label for="preco">Valor do jogo (R$)</label>
@@ -85,7 +68,7 @@
                 placeholder="0.00" required>
 
             <div class="botoes">
-                <button type="button" id="cancelar">Voltar</button>
+                <button type="button" id="btnCancelar">Voltar</button>
                 <button type="submit">Adicionar</button>
             </div>
 
@@ -95,7 +78,6 @@
     <footer id="rodape">
         <h3>FlashaGames 🎮</h3>
         <p>Feito para quem curte jogar.</p>
-        <p>© 2026 FlashaGames | Projeto escolar</p>
     </footer>
 
     <script src="script.js"></script>

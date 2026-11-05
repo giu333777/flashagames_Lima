@@ -1,91 +1,70 @@
-const modalCadastro = document.getElementById("modalCadastro");
-const btnCadastrar = document.getElementById("btnCadastrar");
-const btnCancelar = document.getElementById("btnCancelar");
-const formJogo = document.getElementById("formJogo");
-const listarJogos = document.getElementById("listarJogos");
-const mensagemVazia = document.getElementById("mensagemVazia");
+const modal = document.getElementById("modalCadastro");
+const formulario = document.getElementById("formJogo");
+const lista = document.getElementById("listarJogos");
+const mensagem = document.getElementById("mensagemVazia");
 
-const inputTitulo = document.getElementById("titulo");
-const inputPlataforma = document.getElementById("plataforma");
-const inputDesenvolvedora = document.getElementById("desenvolvedora");
-const inputImagem = document.getElementById("imagemUrl");
-const inputPreco = document.getElementById("preco");
+document.getElementById("btnCadastrar").onclick = () => modal.showModal();
 
-btnCadastrar.addEventListener("click", () => {
-    modalCadastro.showModal();
-});
+document.getElementById("btnCancelar").onclick = () => {
+    modal.close();
+    formulario.reset();
+};
 
-btnCancelar.addEventListener("click", () => {
-    modalCadastro.close();
-    formJogo.reset();
-});
+async function listarJogos() {
+    const resposta = await fetch("/api/jogos");
+    const jogos = await resposta.json();
 
-formJogo.addEventListener("submit", (event) => {
+    lista.innerHTML = "";
+
+    mensagem.style.display = jogos.length === 0 ? "block" : "none";
+
+    jogos.forEach(jogo => {
+        lista.innerHTML += `
+            <article class="card-jogo">
+                <img class="capa" src="${jogo.imagem_url}" alt="${jogo.titulo}">
+                <div class="info-jogo">
+                    <h3>${jogo.titulo}</h3>
+                    <p>Plataforma: ${jogo.plataforma}</p>
+                    <p>Desenvolvedora: ${jogo.desenvolvedora}</p>
+                    <strong class="preco">
+                        ${Number(jogo.preco).toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL"
+                        })}
+                    </strong>
+                </div>
+            </article>
+        `;
+    });
+}
+
+formulario.onsubmit = async (event) => {
     event.preventDefault();
 
-    const titulo = inputTitulo.value.trim();
-    const plataforma = inputPlataforma.value.trim();
-    const desenvolvedora = inputDesenvolvedora.value.trim();
-    const imagemUrl = inputImagem.value.trim();
-    const preco = Number(inputPreco.value);
+    const jogo = {
+        titulo: document.getElementById("titulo").value,
+        plataforma: document.getElementById("plataforma").value,
+        desenvolvedora: document.getElementById("desenvolvedora").value,
+        imagem_url: document.getElementById("imagemUrl").value,
+        preco: document.getElementById("preco").value
+    };
 
-    if (!formJogo.reportValidity()) {
-        return;
-    }
-
-    if (preco < 0 || !Number.isFinite(preco)) {
-        alert("Digite um preço válido.");
-        return;
-    }
-
-    mensagemVazia.style.display = "none";
-
-    const card = document.createElement("article");
-    card.classList.add("card-jogo");
-
-    const imagem = document.createElement("img");
-    imagem.classList.add("capa");
-    imagem.src = imagemUrl;
-    imagem.alt = "Capa do jogo " + titulo;
-    imagem.loading = "lazy";
-
-    imagem.addEventListener("error", () => {
-        imagem.alt = "Imagem indisponível para " + titulo;
-        imagem.removeAttribute("src");
-        imagem.style.height = "190px";
-        imagem.style.background = "#292320";
+    const resposta = await fetch("/api/jogos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(jogo)
     });
 
-    const info = document.createElement("div");
-    info.classList.add("info-jogo");
+    if (resposta.ok) {
+        alert("Jogo cadastrado com sucesso!");
+        formulario.reset();
+        modal.close();
+        listarJogos();
+    } else {
+        alert("Erro ao cadastrar jogo.");
+    }
+};
 
-    const nomeJogo = document.createElement("h3");
-    nomeJogo.textContent = titulo;
-
-    const plataformaJogo = document.createElement("p");
-    plataformaJogo.textContent = "Plataforma: " + plataforma;
-
-    const desenvolvedoraJogo = document.createElement("p");
-    desenvolvedoraJogo.textContent =
-        "Desenvolvedora: " + desenvolvedora;
-
-    const precoJogo = document.createElement("strong");
-    precoJogo.classList.add("preco");
-    precoJogo.textContent = preco.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    });
-
-    info.appendChild(nomeJogo);
-    info.appendChild(plataformaJogo);
-    info.appendChild(desenvolvedoraJogo);
-    info.appendChild(precoJogo);
-
-    card.appendChild(imagem);
-    card.appendChild(info);
-
-    listarJogos.appendChild(card);
-
-    formJogo.reset();
-    modalCadastro.close();
-});
+listarJogos();

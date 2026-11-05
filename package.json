@@ -1,0 +1,29 @@
+{
+  "name": "flashagames_lima",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giu333777/flashagames_Lima.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/giu333777/flashagames_Lima/issues"
+  },
+  "homepage": "https://github.com/giu333777/flashagames_Lima#readme",
+  "devDependencies": {
+    "vite": "^8.3.6"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  }
+}
